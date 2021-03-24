@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>window coordinates</title>
+    <style>
+      body {
+        background-color: pink;
+        /* overflow: hidden; <- 컨텐츠(문서의 내용)가 window보다 벗어나게 되면 보이지 않도록 만듦*/
+        position: relative;
+      }
+      div {
+        background-color: plum;
+        width: 200px;
+        height: 200px;
+        border: 5px solid palevioletred;
+        border-radius: 4px;
+        margin-bottom: 8px;
+      }
+
+      .box {
+        background-color: palevioletred;
+        border: 5px solid plum;
+      }
+
+      header {
+        display: flex;
+        position: fixed;
+        right: 10px;
+      }
+
+      .but {
+        background-color: palevioletred;
+        cursor: pointer;
+        color: white;
+        width: 130px;
+        height: 25px;
+        margin-right: 6px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="js-but1 but">Scroll by 100px(y)</div>
+      <div class="js-but2 but">Scroll to 100px(y)</div>
+      <div class="js-but3 but">Scroll into box</div>
+    </header>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div class="box"></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <script>
+      /* 1번째 시도 - 뭔가 이상함 근데 뭐가 이상한지 모름..
+      let box = document.querySelector(".box");
+      let rect = box.getBoundingClientRect();
+      for (var key in rect) {
+        if (typeof rect[key] !== "function") {
+          box.addEventListener("click", () => {
+            console.log(`${key} : ${rect[key]}`);
+          });
+        }
+      }
+      */
+
+      /* 2번째 시도 - 뭔가 될 것 같다고 확신했는데 안됨. 왜 안되는지 모름..
+      const box = document.querySelector(".box");
+      function printMousePos() {
+        let cursorX;
+        let cursorY;
+        box.onclick = function (e) {
+          cursorX = e.pageX;
+          cursorY = e.pageY;
+        };
+        console.log("X: " + cursorX + ", y: " + cursorY);
+      }
+      printMousePos();
+      */
+
+      /* 3번째 시도 - 콘솔에 나오는 걸 의도했지만 의도치 않게 해당 박스에 나옴
+      const box = document.querySelector(".box");
+      box.addEventListener("click", (e) => {
+        box.innerHTML = `screenX, Y: (${e.screenX}, ${e.screenY}) `;
+        box.innerHTML += `clientX, Y: (${e.clientX}, ${e.clientY}) </br>`;
+        box.innerHTML += `pageX, Y: (${e.pageX}, ${e.pageY}) </br>`;
+        box.innerHTML += `offsetX, Y: (${e.offsetX}, ${e.offsetY}) </br>`;
+      });
+      */
+      const box = document.querySelector(".box");
+      box.addEventListener("click", (event) => {
+        const rect = box.getBoundingClientRect();
+        console.log(rect);
+        console.log(`pageX, pageY: ${event.pageX}, ${event.pageY}`);
+        console.log(`clientX, clientY: ${event.clientX}, ${event.clientY}`);
+      });
+
+      const but1 = document.querySelector(".js-but1"),
+        but2 = document.querySelector(".js-but2"),
+        but3 = document.querySelector(".js-but3");
+      but1.addEventListener("click", (event) => {
+        window.scrollBy({
+          top: 100,
+          left: 0,
+          behavior: "smooth",
+        });
+      });
+      but2.addEventListener("click", (event) => {
+        window.scrollTo({
+          top: 100,
+          left: 0,
+          behavior: "smooth",
+        });
+      });
+      but3.addEventListener("click", (event) => {
+        let location = document.querySelector(".box").offsetTop;
+        window.scrollTo({ top: location, behavior: "smooth" });
+      });
+    </script>
+  </body>
+</html>
