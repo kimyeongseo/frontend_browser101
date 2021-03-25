@@ -1,0 +1,46 @@
+body {
+  background-color: rgb(255, 147, 188);
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/*
+body,
+html {
+  cursor: url(target.png), auto;
+}
+*/
+
+.line {
+  position: absolute;
+  background-color: white;
+}
+
+.horizontal {
+  width: 100%;
+  height: 1px;
+  top: 50%;
+}
+
+.vertical {
+  height: 100%;
+  width: 1px;
+  left: 50%;
+}
+
+.target {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tag {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(20%, 20%);
+  font-size: 40px;
+}
