@@ -14,6 +14,7 @@ body {
   background-color: white;
   border-radius: 25px;
   box-shadow: 0 10px 40px -4px rgba(206, 99, 115, 0.4);
+  position: relative;
 }
 
 header {
@@ -28,12 +29,13 @@ header {
 }
 
 main {
-  height: 500px;
+  height: 450px;
 }
 
 input {
-  width: 293px;
-  height: 20px;
+  width: 300px;
+  height: 30px;
+  text-align: center;
 }
 
 footer {
@@ -44,6 +46,9 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  bottom: 0px;
+  width: 300px;
 }
 
 .add-bar i {
@@ -55,4 +60,50 @@ footer {
   font-size: 20px;
   text-align: center;
   margin: 0%;
+}
+
+ul {
+  list-style: none;
+  margin: 20px 15px;
+  padding: 0%;
+}
+
+li {
+  display: block;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0%;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.removeItemButton {
+  position: absolute;
+  right: 0px;
+}
+button,
+input {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+li::before,
+li::after {
+  content: "";
+  position: absolute;
+  display: inline-block;
+}
+
+li::before {
+  z-index: -1;
+}
+
+li::after {
+  transform: translateX(-51%);
+  z-index: -3;
 }
