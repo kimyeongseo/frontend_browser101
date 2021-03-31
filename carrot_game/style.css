@@ -73,6 +73,10 @@ body {
   transform: scale(1.1);
 }
 
+.game__screen--bug .game__screen--carrot {
+  position: absolute;
+}
+
 .game__screen--info {
   width: 350px;
   height: 200px;

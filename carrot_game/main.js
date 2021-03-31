@@ -18,29 +18,95 @@
  */
 const playBnt = document.querySelector('.game__info--playBnt');
 const count = document.querySelector('.game__info--carrotCount');
-
-
-function gameStart(){
-
-}
+const carrot = document.querySelector('.game__screen--carrot');
+const bug = document.querySelector('.game__screen--bug');
 
 playBnt.addEventListener('click', () => {
-
-
-    console.log('start');
     let timeLeft = 10;
     let elem = document.querySelector('.game__info--timer');
     let timerId = setInterval(countdown, 1000);
 
+    document.querySelector('.game__screen').innerHTML = `
+    <img class="game__screen--bug" src="img/bug.png" alt="bug" />
+    <img class="game__screen--carrot" src="img/carrot.png" alt="carrot" />
+    <img class="game__screen--bug" src="img/bug.png" alt="bug" />
+    <img class="game__screen--carrot" src="img/carrot.png" alt="carrot" />
+    <img class="game__screen--bug" src="img/bug.png" alt="bug" />
+    <img class="game__screen--carrot" src="img/carrot.png" alt="carrot" />
+    <img class="game__screen--bug" src="img/bug.png" alt="bug" />
+    <img class="game__screen--carrot" src="img/carrot.png" alt="carrot" />
+    <img class="game__screen--bug" src="img/bug.png" alt="bug" />
+    <img class="game__screen--carrot" src="img/carrot.png" alt="carrot" />
+    <img class="game__screen--bug" src="img/bug.png" alt="bug" />
+    <img class="game__screen--carrot" src="img/carrot.png" alt="carrot" />
+    <img class="game__screen--bug" src="img/bug.png" alt="bug" />
+    <img class="game__screen--carrot" src="img/carrot.png" alt="carrot" />
+    <img class="game__screen--bug" src="img/bug.png" alt="bug" />
+    <img class="game__screen--carrot" src="img/carrot.png" alt="carrot" />
+    <img class="game__screen--bug" src="img/bug.png" alt="bug" />
+    <img class="game__screen--carrot" src="img/carrot.png" alt="carrot" />
+    <img class="game__screen--bug" src="img/bug.png" alt="bug" />
+    <img class="game__screen--carrot" src="img/carrot.png" alt="carrot" />
+    `;
+
     function countdown() {
         if (timeLeft == -1) {
             clearTimeout(timerId);
-            // doSomething(); <- 시간이 끝나면 실행할 함수
+             replay(); //<- 시간이 끝나면 실행할 함수
         } else {
             elem.innerHTML = `0:${timeLeft < 10 ? `0${timeLeft}` : timeLeft}`;
             timeLeft--;
         } 
     }
-    //function doSomething() {alert("Hi");} <- 실핼할 함수 코드
+
+    function replay() { //<- 실핼할 함수 코드
+        document.querySelector('.game__screen').innerHTML = `
+        <div class="game__screen--info">
+          <div class="game__screen--replayBnt">
+            <i class="fas fa-reply"></i>
+          </div>
+          <span class="game__screen--gameResult">You Lost</span>
+        </div>
+        `
+        const replayBnt = document.querySelector('.game__screen--replayBnt');
+        replayBnt.addEventListener('click', event => {
+            let timeLeft = 10;
+    let elem = document.querySelector('.game__info--timer');
+    let timerId = setInterval(countdown, 1000);
+
+    document.querySelector('.game__screen').innerHTML = `
+    <img class="game__screen--bug" src="img/bug.png" alt="bug" />
+    <img class="game__screen--carrot" src="img/carrot.png" alt="carrot" />
+    <img class="game__screen--bug" src="img/bug.png" alt="bug" />
+    <img class="game__screen--carrot" src="img/carrot.png" alt="carrot" />
+    <img class="game__screen--bug" src="img/bug.png" alt="bug" />
+    <img class="game__screen--carrot" src="img/carrot.png" alt="carrot" />
+    <img class="game__screen--bug" src="img/bug.png" alt="bug" />
+    <img class="game__screen--carrot" src="img/carrot.png" alt="carrot" />
+    <img class="game__screen--bug" src="img/bug.png" alt="bug" />
+    <img class="game__screen--carrot" src="img/carrot.png" alt="carrot" />
+    <img class="game__screen--bug" src="img/bug.png" alt="bug" />
+    <img class="game__screen--carrot" src="img/carrot.png" alt="carrot" />
+    <img class="game__screen--bug" src="img/bug.png" alt="bug" />
+    <img class="game__screen--carrot" src="img/carrot.png" alt="carrot" />
+    <img class="game__screen--bug" src="img/bug.png" alt="bug" />
+    <img class="game__screen--carrot" src="img/carrot.png" alt="carrot" />
+    <img class="game__screen--bug" src="img/bug.png" alt="bug" />
+    <img class="game__screen--carrot" src="img/carrot.png" alt="carrot" />
+    <img class="game__screen--bug" src="img/bug.png" alt="bug" />
+    <img class="game__screen--carrot" src="img/carrot.png" alt="carrot" />
+    `;
+    
+    function countdown() {
+        if (timeLeft == -1) {
+            clearTimeout(timerId);
+             replay(); //<- 시간이 끝나면 실행할 함수
+        } else {
+            elem.innerHTML = `0:${timeLeft < 10 ? `0${timeLeft}` : timeLeft}`;
+            timeLeft--;
+        } 
+    }       
+        });
+    } 
 });
 
